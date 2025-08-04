@@ -1,4 +1,4 @@
-import User from "./models/User"
+import User from "./models/User.js";
 import bcrypt from "bcryptjs";
 import { connectDb } from './config/db.js';
 
@@ -12,10 +12,10 @@ const userRegister = async () => {
             password: hashPassword,
             role: "admin"
         })
-        await newUser.save();
+        await newUser.save()
     } catch (error) {
         console.log(error)        
     }
 }
 
-userRegister()
+userRegister();
