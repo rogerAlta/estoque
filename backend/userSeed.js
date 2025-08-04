@@ -1,14 +1,21 @@
 import User from "./models/User"
+import bcrypt from "bcryptjs";
+import { connectDb } from './config/db.js';
 
 const userRegister = async () => {
+    connectDb();
     try {
+        const hashPassword = await bcrypt.hash("admin", 10);
         const newUser = new User({
-            name: 
+            name: "admin",
+            email: "admin@gmaill.com",
+            password: hashPassword,
+            role: "admin"
         })
-    } catch () {
-        
+        await newUser.save();
+    } catch (error) {
+        console.log(error)        
     }
-
 }
 
-export default userSeed
+userRegister()
